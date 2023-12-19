@@ -1,0 +1,5 @@
+﻿Rebuild started at 13.11...
+1>------ Rebuild All started: Project: MVCTilausDB, Configuration: Debug Any CPU ------
+1>  MVCTilausDB -> C:\Users\User1\source\repos\ASP.NET\MVCTilausDB\bin\MVCTilausDB.dll
+========== Rebuild All: 1 succeeded, 0 failed, 0 skipped ==========
+========== Rebuild completed at 13.11 and took 01,905 seconds ==========

@@ -25,14 +25,14 @@ namespace MVCTilausDB.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Sovelluksesta.";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Yhteistietomme.";
 
             return View();
         }
@@ -49,14 +49,14 @@ namespace MVCTilausDB.Controllers
             var LoggedUser = db.Logins.SingleOrDefault(x => x.UserName == LoginModel.UserName && x.PassWord == LoginModel.PassWord);
             if (LoggedUser != null)
             {
-                ViewBag.LoginMessage = "Successfull login";
+                ViewBag.LoginMessage = "Sisään kirjaus onnistui!";
                 ViewBag.LoggedStatus = "In";
                 Session["UserName"] = LoggedUser.UserName;
                 return RedirectToAction("Index", "Home"); //Tässä määritellään mihin onnistunut kirjautuminen johtaa --> Home/Index
             }
             else
             {
-                ViewBag.LoginMessage = "Login unsuccessfull";
+                ViewBag.LoginMessage = "Kirjaudu uudestaan";
                 ViewBag.LoggedStatus = "Out";
                 LoginModel.LoginErrorMessage = "Tuntematon käyttäjätunnus tai salasana.";
                 return View("Login", LoginModel);

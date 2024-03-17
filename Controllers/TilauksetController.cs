@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MVCTilausDB.Models;
+using MVCTilausDB.ViewModels;
 
 namespace MVCTilausDB.Controllers
 {
@@ -138,6 +139,42 @@ namespace MVCTilausDB.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult Ordersummary()
+        {
+            var orderSummary = from o in db.Tilaukset
+                               join od in db.Tilausrivit on o.TilausID equals od.TilausID
+                               join p in db.Tuotteet on od.TuoteID equals p.TuoteID
+                               
+
+                               select new OrderSummaryData
+                               {
+                                   TilausID = o.TilausID,
+                                   TuoteID = p.TuoteID,
+                                 
+
+                                   Toimitusosoite = o.Toimitusosoite,
+                                   
+                                   Tilauspvm = (DateTime)o.Tilauspvm,
+                                   Toimituspvm = (DateTime)o.Toimituspvm,
+
+                                   Maara = (int)od.Maara,
+                                   Ahinta = (int)od.Ahinta,
+
+                                   Nimi = p.Nimi,
+                                   ahinta = (int)p.Ahinta
+
+
+
+
+
+                               };
+
+            ViewBag.TotalOrders = orderSummary.Count();
+
+
+            return View(orderSummary);
         }
     }
 }

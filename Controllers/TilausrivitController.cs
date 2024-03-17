@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MVCTilausDB.Models;
+using MVCTilausDB.ViewModels;
 
 namespace MVCTilausDB.Controllers
 {
@@ -140,5 +141,6 @@ namespace MVCTilausDB.Controllers
             }
             base.Dispose(disposing);
         }
+
     }
 }

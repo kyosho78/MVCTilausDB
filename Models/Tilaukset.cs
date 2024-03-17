@@ -31,5 +31,8 @@ namespace MVCTilausDB.Models
         public virtual Postitoimipaikat Postitoimipaikat { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tilausrivit> Tilausrivit { get; set; }
+        public int TuoteID { get; internal set; }
+        public int Maara { get; internal set; }
+        public decimal Ahinta { get; internal set; }
     }
 }

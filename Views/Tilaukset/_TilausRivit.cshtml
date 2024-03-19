@@ -1,0 +1,64 @@
+﻿@model IEnumerable<MVCTilausDB.ViewModels.OrderRows>
+
+
+
+
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TilausID)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.TuoteID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TuotteenNimi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ahinta)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Maara)
+        </th>
+
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TilausID)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.TuoteID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TuotteenNimi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ahinta)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Maara)
+            </td>
+
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+            </td>
+        </tr>
+    }
+        </tbody>
+</table>

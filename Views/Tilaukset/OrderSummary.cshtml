@@ -4,7 +4,7 @@
     ViewBag.Title = "OrderSummary";
 }
 
-<h2>OrderSummary</h2>
+<h2>Tilausten yhteenveto</h2>
 
 @*<p>
     @Html.ActionLink("Create New", "Create")
@@ -16,6 +16,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.AsiakasID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AsiakkaanNimi)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Toimitusosoite)
@@ -32,11 +35,15 @@
             @Html.DisplayNameFor(model => model.TuoteID)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Nimi)
+            @Html.DisplayNameFor(model => model.TuotteenNimi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Maara)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Ahinta)
         </th>
+
         <th></th>
     </tr>
 
@@ -47,6 +54,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.AsiakasID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AsiakkaanNimi)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Toimitusosoite)
@@ -63,11 +73,15 @@
             @Html.DisplayFor(modelItem => item.TuoteID)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Nimi)
+            @Html.DisplayFor(modelItem => item.TuotteenNimi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Maara)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Ahinta)
         </td>
+
         @*<td>
             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |

@@ -143,27 +143,31 @@ namespace MVCTilausDB.Controllers
 
         public ActionResult Ordersummary()
         {
-            var orderSummary = from o in db.Tilaukset
-                               join od in db.Tilausrivit on o.TilausID equals od.TilausID
-                               join p in db.Tuotteet on od.TuoteID equals p.TuoteID
+            var orderSummary = from t in db.Tilaukset
+                               join ti in db.Tilausrivit on t.TilausID equals ti.TilausID
+                               join tu in db.Tuotteet on ti.TuoteID equals tu.TuoteID
+                               join a in db.Asiakkaat on t.AsiakasID equals a.AsiakasID
                                
 
                                select new OrderSummaryData
                                {
-                                   TilausID = o.TilausID,
-                                   TuoteID = p.TuoteID,
+                                   TilausID = t.TilausID,
+                                   TuoteID = tu.TuoteID,
+                                   AsiakasID = a.AsiakasID,
+
+                                   AsiakkaanNimi = a.Nimi,
                                  
 
-                                   Toimitusosoite = o.Toimitusosoite,
+                                   Toimitusosoite = t.Toimitusosoite,
                                    
-                                   Tilauspvm = (DateTime)o.Tilauspvm,
-                                   Toimituspvm = (DateTime)o.Toimituspvm,
+                                   Tilauspvm = (DateTime)t.Tilauspvm,
+                                   Toimituspvm = (DateTime)t.Toimituspvm,
 
-                                   Maara = (int)od.Maara,
-                                   Ahinta = (int)od.Ahinta,
+                                   Maara = (int)ti.Maara,
+                                   Ahinta = (decimal)ti.Ahinta,
 
-                                   Nimi = p.Nimi,
-                                   ahinta = (int)p.Ahinta
+                                   TuotteenNimi = tu.Nimi,
+                                   ahinta = (decimal)tu.Ahinta
 
 
 
@@ -176,5 +180,32 @@ namespace MVCTilausDB.Controllers
 
             return View(orderSummary);
         }
+
+        public ActionResult TilausOtsikot()
+        {
+                var tilaukset = db.Tilaukset.Include(t => t.Asiakkaat).Include(t => t.Postitoimipaikat);
+                return View(tilaukset.ToList()); 
+        }
+
+        public ActionResult _TilausRivit(int? tilausid)
+        {
+            var orderRowsList = from ti in db.Tilausrivit
+                               join tu in db.Tuotteet on ti.TuoteID equals tu.TuoteID
+                               where ti.TilausID == tilausid
+
+
+                               select new OrderRows
+                               {
+                                   TilausID = (int)ti.TilausID,
+                                   TuoteID = tu.TuoteID,
+                                   Maara = (int)ti.Maara,
+                                   Ahinta = (decimal)ti.Ahinta,
+                                   TuotteenNimi = tu.Nimi,
+                               };
+
+
+            return PartialView(orderRowsList);
+        }
+
     }
 }

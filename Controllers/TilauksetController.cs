@@ -45,12 +45,21 @@ namespace MVCTilausDB.Controllers
         }
 
         // GET: Tilaukset/Create
+        //public ActionResult Create()
+        //{
+        //    ViewBag.AsiakasID = new SelectList(db.Asiakkaat, "AsiakasID", "Nimi");
+        //    ViewBag.AsiakasID = new SelectList(db.Asiakkaat, "AsiakasID", "Osoite");
+        //    ViewBag.Postinumero = new SelectList(db.Postitoimipaikat, "Postinumero", "Postitoimipaikka");
+        //    return View();
+        //}
         public ActionResult Create()
         {
-            ViewBag.AsiakasID = new SelectList(db.Asiakkaat, "AsiakasID", "Nimi");
+            ViewBag.AsiakasNameSelectList = new SelectList(db.Asiakkaat, "AsiakasID", "Nimi");
+            ViewBag.AsiakasAddressSelectList = new SelectList(db.Asiakkaat, "AsiakasID", "Osoite");
             ViewBag.Postinumero = new SelectList(db.Postitoimipaikat, "Postinumero", "Postitoimipaikka");
             return View();
         }
+
 
         // POST: Tilaukset/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
@@ -70,6 +79,9 @@ namespace MVCTilausDB.Controllers
             ViewBag.Postinumero = new SelectList(db.Postitoimipaikat, "Postinumero", "Postitoimipaikka", tilaukset.Postinumero);
             return View(tilaukset);
         }
+
+
+
 
         // GET: Tilaukset/Edit/5
         public ActionResult Edit(int? id)

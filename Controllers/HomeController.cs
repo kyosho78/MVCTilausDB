@@ -51,6 +51,7 @@ namespace MVCTilausDB.Controllers
             {
                 ViewBag.LoginMessage = "Sisään kirjaus onnistui!";
                 ViewBag.LoggedStatus = "In";
+                ViewBag.LoginError = 0;
                 Session["UserName"] = LoggedUser.UserName;
                 return RedirectToAction("Index", "Home"); //Tässä määritellään mihin onnistunut kirjautuminen johtaa --> Home/Index
             }
@@ -58,6 +59,7 @@ namespace MVCTilausDB.Controllers
             {
                 ViewBag.LoginMessage = "Kirjaudu uudestaan";
                 ViewBag.LoggedStatus = "Out";
+                ViewBag.LoginError = 1; //Pakotetaan modaali login-ruutu uudelleen koska kirjautumisyritys on epäonnistunut
                 LoginModel.LoginErrorMessage = "Tuntematon käyttäjätunnus tai salasana.";
                 return View("Login", LoginModel);
             }
